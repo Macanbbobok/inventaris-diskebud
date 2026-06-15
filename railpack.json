@@ -4,6 +4,17 @@
     "php": "8.4"
   },
   "buildAptPackages": [
+    "autoconf",
+    "bison",
+    "re2c",
+    "libxml2-dev",
+    "libsqlite3-dev",
+    "libonig-dev",
+    "libreadline-dev",
+    "libcurl4-openssl-dev",
+    "libssl-dev",
+    "libpq-dev",
+    "libgd-dev",
     "libicu-dev",
     "libzip-dev",
     "libpng-dev",
