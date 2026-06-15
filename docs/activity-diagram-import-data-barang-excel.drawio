@@ -1,0 +1,146 @@
+<mxfile host="app.diagrams.net" agent="Codex">
+  <diagram id="import-barang-excel" name="Activity Diagram Import Data Barang Excel">
+    <mxGraphModel dx="3053" dy="1893" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user-lane" parent="1" style="swimlane;html=1;horizontal=1;startSize=50;rounded=0;collapsible=0;fontSize=17;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="Admin / Staff" vertex="1">
+          <mxGeometry height="1280" width="480" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="system-lane" parent="1" style="swimlane;html=1;horizontal=1;startSize=50;rounded=0;collapsible=0;fontSize=17;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="Sistem" vertex="1">
+          <mxGeometry height="1280" width="510" x="520" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="system-lane" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontStyle=1;" value="Valid">
+          <mxGeometry relative="1" x="0.0665" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="290" y="720" as="sourcePoint" />
+            <mxPoint x="360.03030303030323" y="800.02" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="row-decision" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=13;" value="Baris data&lt;br&gt;valid?" vertex="1">
+          <mxGeometry height="80" width="100" x="710" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="265" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="choose-import" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Memilih menu Import Excel" vertex="1">
+          <mxGeometry height="60" width="240" x="160" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="show-upload" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menampilkan formulir impor" vertex="1">
+          <mxGeometry height="60" width="220" x="650" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="upload-file" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Memilih dan mengunggah file Excel" vertex="1">
+          <mxGeometry height="65" width="270" x="145" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="validate-file" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Memvalidasi file Excel" vertex="1">
+          <mxGeometry height="65" width="210" x="655" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="file-decision" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=13;" value="File valid?" vertex="1">
+          <mxGeometry height="80" width="100" x="710" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="retry-file" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Memilih ulang file Excel" vertex="1">
+          <mxGeometry height="60" width="220" x="170" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="read-rows" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Membaca baris data" vertex="1">
+          <mxGeometry height="65" width="230" x="645" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="validate-row" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Memvalidasi setiap baris data" vertex="1">
+          <mxGeometry height="65" width="230" x="645" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="record-error" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;" value="Mencatat baris duplikat atau gagal" vertex="1">
+          <mxGeometry height="70" width="210" x="535" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="save-row" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;" value="Menyimpan data barang dan detail KIB B" vertex="1">
+          <mxGeometry height="70" width="210" x="775" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="more-rows" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=13;" value="Masih ada&lt;br&gt;baris data?" vertex="1">
+          <mxGeometry height="80" width="100" x="710" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="save-log" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menyimpan riwayat impor" vertex="1">
+          <mxGeometry height="60" width="220" x="650" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="show-summary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;" value="Menampilkan ringkasan impor: berhasil, duplikat, dan gagal" vertex="1">
+          <mxGeometry height="70" width="280" x="620" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="end-outer" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="740" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="end-inner" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="748" y="1268" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="choose-import">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="choose-import" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="show-upload">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="show-upload" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="upload-file">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="240" />
+              <mxPoint x="280" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="upload-file" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="validate-file">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="validate-file" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="file-decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="file-decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontStyle=1;" target="retry-file" value="Tidak Valid">
+          <mxGeometry relative="1" x="-0.2" y="-12" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="retry-file" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="upload-file">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="425" />
+              <mxPoint x="100" y="308" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="file-decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontStyle=1;" target="read-rows" value="Valid">
+          <mxGeometry relative="1" x="-0.2" y="-14" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="read-rows" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="validate-row">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="validate-row" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="row-decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="row-decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontStyle=1;" target="record-error" value="Tidak Valid/ Duplikat / Gagal">
+          <mxGeometry relative="1" x="0.3333" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="640" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="record-error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="more-rows">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="save-row" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="more-rows">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="more-rows" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontStyle=1;" target="validate-row" value="Ya">
+          <mxGeometry relative="1" x="0.269" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1000" y="990" />
+              <mxPoint x="1000" y="643" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="more-rows" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontStyle=1;" target="save-log" value="Tidak">
+          <mxGeometry relative="1" x="-0.2" y="-14" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="save-log" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="show-summary">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="show-summary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="end-outer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

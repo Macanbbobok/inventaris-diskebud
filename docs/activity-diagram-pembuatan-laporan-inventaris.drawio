@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Codex">
+  <diagram id="pembuatan-laporan-inventaris" name="Activity Diagram Pembuatan Laporan Inventaris">
+    <mxGraphModel dx="1409" dy="874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user-lane" parent="1" style="swimlane;html=1;horizontal=1;startSize=50;rounded=0;collapsible=0;fontSize=17;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="Admin / Staff" vertex="1">
+          <mxGeometry height="820" width="480" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="system-lane" parent="1" style="swimlane;html=1;horizontal=1;startSize=50;rounded=0;collapsible=0;fontSize=17;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="Sistem" vertex="1">
+          <mxGeometry height="820" width="480" x="520" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="265" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="choose-create" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Memilih Buat Laporan Inventaris" vertex="1">
+          <mxGeometry height="60" width="270" x="145" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="show-form" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menampilkan formulir laporan" vertex="1">
+          <mxGeometry height="60" width="220" x="650" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="fill-form" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;" value="Memilih jenis laporan, periode, bulan, dan tahun" vertex="1">
+          <mxGeometry height="70" width="310" x="125" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="determine-period" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menentukan rentang periode laporan" vertex="1">
+          <mxGeometry height="70" width="260" x="630" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="collect-data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;" value="Mengambil data sesuai jenis dan periode laporan" vertex="1">
+          <mxGeometry height="65" width="290" x="615" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="generate-pdf" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Membuat file laporan PDF" vertex="1">
+          <mxGeometry height="60" width="220" x="650" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="save-report" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menyimpan file dan riwayat laporan" vertex="1">
+          <mxGeometry height="60" width="260" x="630" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="show-report" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;" value="Menampilkan laporan yang siap diunduh" vertex="1">
+          <mxGeometry height="60" width="270" x="625" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="download-report" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Mengunduh laporan PDF" vertex="1">
+          <mxGeometry height="60" width="210" x="175" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="end-outer" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="260" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="end-inner" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="268" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="choose-create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="choose-create" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="show-form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="show-form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;exitX=0.435;exitY=1.014;exitDx=0;exitDy=0;exitPerimeter=0;" target="fill-form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="fill-form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="determine-period">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="determine-period" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="collect-data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="collect-data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="generate-pdf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="generate-pdf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="save-report">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="save-report" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="show-report">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="show-report" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="download-report">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="download-report" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="end-outer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

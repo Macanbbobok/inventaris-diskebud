@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" agent="Codex">
+  <diagram id="sequence-tambah-kib-b" name="Sequence Diagram Tambah Detail KIB B">
+    <mxGraphModel dx="611" dy="379" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="actor" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=15;" value="Admin / Staff" vertex="1">
+          <mxGeometry height="90" width="70" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="page" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Halaman Detail KIB B" vertex="1">
+          <mxGeometry height="50" width="190" x="220" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="kib-model" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Model KIB B" vertex="1">
+          <mxGeometry height="50" width="160" x="500" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="barang-model" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Model Barang" vertex="1">
+          <mxGeometry height="50" width="160" x="760" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="database" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Database" vertex="1">
+          <mxGeometry height="70" width="120" x="1050" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="life-actor" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#808080;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="64.52000000000001" y="135" as="sourcePoint" />
+            <mxPoint x="64.52000000000001" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="life-page" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#808080;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315" y="105" as="sourcePoint" />
+            <mxPoint x="315" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="life-kib" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#808080;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="105" as="sourcePoint" />
+            <mxPoint x="580" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="life-barang" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#808080;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="840" y="105" as="sourcePoint" />
+            <mxPoint x="840" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="life-db" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#808080;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1110" y="115" as="sourcePoint" />
+            <mxPoint x="1110" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;strokeColor=#000000;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;" value="1. Memilih Tambah Detail KIB B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="175" as="sourcePoint" />
+            <mxPoint x="315" y="175" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;strokeWidth=1.5;fontSize=13;labelBackgroundColor=#FFFFFF;" value="2. Menampilkan formulir Detail KIB B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315" y="230" as="sourcePoint" />
+            <mxPoint x="60" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;strokeColor=#000000;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;" value="3. Mengirim data barang dan Detail KIB B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="290" as="sourcePoint" />
+            <mxPoint x="315" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;strokeColor=#000000;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;" value="4. Membuat Detail KIB B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315" y="345" as="sourcePoint" />
+            <mxPoint x="580" y="345" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;strokeColor=#000000;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;" value="5. Menyimpan Detail KIB B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="400" as="sourcePoint" />
+            <mxPoint x="1110" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;strokeWidth=1.5;fontSize=13;labelBackgroundColor=#FFFFFF;" value="6. Mengembalikan data tersimpan">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1110" y="455" as="sourcePoint" />
+            <mxPoint x="580" y="455" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m7" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;strokeColor=#000000;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;" value="7. Menandai barang sebagai KIB B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="515" as="sourcePoint" />
+            <mxPoint x="840" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;strokeColor=#000000;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;" value="8. Memperbarui jenis KIB barang menjadi B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="840" y="570" as="sourcePoint" />
+            <mxPoint x="1110" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m9" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;strokeWidth=1.5;fontSize=13;labelBackgroundColor=#FFFFFF;" value="9. Mengembalikan hasil penyimpanan">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="635" as="sourcePoint" />
+            <mxPoint x="315" y="635" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m10" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#000000;strokeWidth=1.5;fontSize=13;labelBackgroundColor=#FFFFFF;" value="10. Menampilkan notifikasi berhasil">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315" y="700" as="sourcePoint" />
+            <mxPoint x="70" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

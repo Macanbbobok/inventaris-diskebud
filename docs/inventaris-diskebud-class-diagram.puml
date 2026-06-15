@@ -1,0 +1,279 @@
+@startuml
+title Class Diagram Sistem Inventaris Diskebud
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+package "Model" {
+  class User {
+    +id: bigint
+    +name: string
+    +email: string
+    +password: string
+    +role: enum
+    +bidang: string
+    --
+    +notifications()
+    +unreadNotifications()
+  }
+
+  class Bidang {
+    +id: bigint
+    +nama_bidang: string
+    --
+    +ruangans()
+    +barang()
+  }
+
+  class Ruangan {
+    +id: bigint
+    +kode_ruangan: string
+    +nama_ruangan: string
+    +lantai: string
+    --
+    +bidangs()
+    +barang()
+    +mutasiAsal()
+    +mutasiTujuan()
+  }
+
+  class Barang {
+    +id: bigint
+    +kode_barang: string
+    +nama_barang: string
+    +jenis_kib: enum
+    +tahun_perolehan: year
+    +tanggal_perolehan: date
+    +kondisi: enum
+    +status: enum
+    +harga_perolehan: decimal
+    +qr_code: string
+    +foto: string
+    --
+    +bidang()
+    +ruangan()
+    +creator()
+    +detailKibB()
+    +mutasiBarang()
+    +pemeliharaan()
+    +requestKerusakan()
+    +getKodeNamaAttribute(): string
+  }
+
+  class KibBPeralatanMesin {
+    +id: bigint
+    +merk_type: string
+    +ukuran: string
+    +bahan: string
+    +no_seri: string
+    +spesifikasi: text
+    --
+    +barang()
+    -markBarangAsKibB()
+    -unmarkBarangAsKibB(barangId: int)
+  }
+
+  class MutasiBarang {
+    +id: bigint
+    +tanggal_mutasi: date
+    +alasan: text
+    +kondisi_sebelum: enum
+    +kondisi_sesudah: enum
+    --
+    +barang()
+    +ruanganAsal()
+    +ruanganTujuan()
+    +petugas()
+  }
+
+  class RequestKerusakan {
+    +id: bigint
+    +tanggal_laporan: date
+    +tingkat_kerusakan: enum
+    +deskripsi_kerusakan: text
+    +status: enum
+    --
+    +barang()
+    +pelapor()
+    +pemeliharaan()
+    -updateBarangCondition()
+  }
+
+  class Pemeliharaan {
+    +id: bigint
+    +tanggal: date
+    +jenis_pemeliharaan: string
+    +deskripsi: text
+    +biaya: decimal
+    +kondisi_sesudah: enum
+    --
+    +barang()
+    +requestKerusakan()
+    +petugas()
+  }
+
+  class LaporanInventaris {
+    +id: bigint
+    +jenis_laporan: string
+    +periode: enum
+    +bulan: tinyint
+    +tahun: year
+    +file_laporan: string
+    --
+    +pembuat()
+  }
+
+  class ImportLog {
+    +id: bigint
+    +nama_file: string
+    +tipe_import: string
+    +jenis_kib: enum
+    +total_baris: int
+    +berhasil: int
+    +gagal: int
+    +duplikat: int
+    +status: enum
+    +catatan_error: text
+    +detail_error: array
+    +path_file: string
+    +waktu_selesai: datetime
+    --
+    +uploader()
+  }
+
+  class DatabaseNotification {
+    +id: uuid
+    +type: string
+    +notifiable_type: string
+    +notifiable_id: bigint
+    +data: json
+    +read_at: datetime
+    --
+    +markAsRead()
+    +markAsUnread()
+  }
+}
+
+package "Service" {
+  class LaporanInventarisGenerator {
+    +generate(data: array): LaporanInventaris
+    +monthRange(periode: string, bulan: ?int): array
+    -normalizeData(data: array): array
+    -periodFileSuffix(data: array): string
+  }
+
+  class LaporanInventarisPeriodikService {
+    +generateDueReports(date: CarbonInterface|string|null = null, force: bool = false): array
+    +duePeriods(date: CarbonInterface|string|null = null): array
+    -reportExists(data: array): bool
+    -period(periode: string, bulan: ?int, tahun: int): array
+    -periodLabel(periode: string, bulan: ?int, tahun: int): string
+    -monthName(month: ?int): string
+    -romanNumber(number: int): string
+  }
+
+  class RequestKerusakanNotificationService {
+    +sendCreatedNotification(request: RequestKerusakan): void
+    +sendStatusNotification(request: RequestKerusakan): void
+    +markCreatedNotificationsAsRead(request: RequestKerusakan, user: User): int
+    +markCreatedNotificationsAsReadForAdmins(request: RequestKerusakan): int
+    +markFinalStatusNotificationsAsRead(request: RequestKerusakan, user: User): int
+    +isFinalStatus(status: ?string): bool
+  }
+}
+
+package "Filament Create Page" {
+  class CreateMutasiBarang {
+    #handleRecordCreation(data: array): Model
+    #getCreatedNotification(): ?Notification
+    #getRedirectUrl(): string
+  }
+
+  class CreatePemeliharaan {
+    #handleRecordCreation(data: array): Model
+    #getCreatedNotification(): ?Notification
+    #getRedirectUrl(): string
+  }
+
+  class CreateLaporanInventaris {
+    #handleRecordCreation(data: array): Model
+    #getCreatedNotification(): ?Notification
+  }
+}
+
+User "0..1" <-- "0..*" Barang : created_by
+User "0..1" <-- "0..*" MutasiBarang : dilakukan_oleh
+User "0..1" <-- "0..*" RequestKerusakan : dilaporkan_oleh
+User "0..1" <-- "0..*" Pemeliharaan : dilakukan_oleh
+User "0..1" <-- "0..*" LaporanInventaris : dibuat_oleh
+User "0..1" <-- "0..*" ImportLog : diupload_oleh
+User "1" <-- "0..*" DatabaseNotification : notifiable
+
+Bidang "0..*" -- "0..*" Ruangan : bidang_ruangan
+Bidang "1" <-- "0..*" Barang : bidang_id
+
+Ruangan "1" <-- "0..*" Barang : ruangan_id
+Ruangan "1" <-- "0..*" MutasiBarang : ruangan_asal_id
+Ruangan "1" <-- "0..*" MutasiBarang : ruangan_tujuan_id
+
+Barang "1" *-- "0..1" KibBPeralatanMesin : detailKibB
+Barang "1" <-- "0..*" MutasiBarang : barang_id
+Barang "1" <-- "0..*" RequestKerusakan : barang_id
+Barang "1" <-- "0..*" Pemeliharaan : barang_id
+RequestKerusakan "1" <-- "0..1" Pemeliharaan : request_kerusakan_id
+
+KibBPeralatanMesin ..> Barang : updates jenis_kib
+RequestKerusakan ..> Barang : updates kondisi
+Pemeliharaan ..> Barang : updates kondisi
+Pemeliharaan ..> RequestKerusakan : sets status selesai
+
+LaporanInventarisGenerator ..> Barang
+LaporanInventarisGenerator ..> KibBPeralatanMesin
+LaporanInventarisGenerator ..> MutasiBarang
+LaporanInventarisGenerator ..> Pemeliharaan
+LaporanInventarisGenerator ..> LaporanInventaris
+LaporanInventarisPeriodikService ..> LaporanInventarisGenerator
+LaporanInventarisPeriodikService ..> LaporanInventaris
+RequestKerusakanNotificationService ..> RequestKerusakan
+RequestKerusakanNotificationService ..> User
+RequestKerusakanNotificationService ..> DatabaseNotification
+
+CreateMutasiBarang ..> MutasiBarang : creates many rows
+CreateMutasiBarang ..> Barang : updates ruangan and kondisi
+CreatePemeliharaan ..> Pemeliharaan : creates many rows
+CreatePemeliharaan ..> Barang : updates kondisi
+CreatePemeliharaan ..> RequestKerusakan : optional source
+CreateLaporanInventaris ..> LaporanInventarisGenerator
+
+note right of CreateMutasiBarang
+  Fitur batch mutasi tidak memakai tabel header.
+  Barang dipilih banyak, lalu sistem membuat
+  satu record MutasiBarang untuk setiap barang.
+end note
+
+note right of CreatePemeliharaan
+  Fitur batch pemeliharaan juga membuat
+  satu record Pemeliharaan untuk setiap barang.
+  Jika berasal dari RequestKerusakan,
+  request terkait diselesaikan.
+end note
+
+note bottom of RequestKerusakanNotificationService
+  Admin menerima notifikasi request baru.
+  Staff/pelapor menerima notifikasi perubahan status.
+  Notifikasi final dibaca setelah halaman View dibuka.
+end note
+
+note bottom of KibBPeralatanMesin
+  Model menggunakan relasi hasOne dari Barang.
+  Kolom barang_id belum memiliki constraint unique,
+  sehingga kardinalitas 0..1 belum dijamin database.
+end note
+
+note bottom of Pemeliharaan
+  RequestKerusakan menggunakan relasi hasOne.
+  Kolom request_kerusakan_id belum memiliki constraint unique,
+  sehingga kardinalitas 0..1 belum dijamin database.
+end note
+
+@enduml

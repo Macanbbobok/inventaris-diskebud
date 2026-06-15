@@ -1,0 +1,253 @@
+// ERD Inventaris Diskebud
+// Format DBML untuk dbdiagram.io.
+// Fokus diagram: struktur fisik tabel utama sistem inventaris.
+// Tabel teknis Laravel seperti cache, jobs, sessions, dan password reset tidak ditampilkan.
+// Catatan: fitur batch mutasi dan batch pemeliharaan tidak memakai tabel header;
+// satu aksi create menghasilkan banyak baris mutasi_barang atau pemeliharaan.
+// NIP dan jabatan belum ditampilkan karena belum tersedia pada migration users.
+
+Enum user_role {
+  admin
+  pimpinan
+  staff
+}
+
+Enum jenis_kib {
+  B
+}
+
+Enum kondisi_barang {
+  baik
+  rusak_ringan
+  rusak_berat
+}
+
+Enum status_barang {
+  aktif
+  dihapus
+  dipinjam
+}
+
+Enum periode_laporan {
+  bulanan
+  triwulanan
+  semesteran
+  tahunan
+}
+
+Enum status_import {
+  sukses
+  sebagian
+  gagal
+}
+
+Enum tingkat_kerusakan {
+  ringan
+  sedang
+  berat
+}
+
+Enum status_request_kerusakan {
+  diajukan
+  diproses
+  selesai
+  ditolak
+}
+
+Table users {
+  id bigint [pk, increment]
+  name varchar
+  email varchar [unique]
+  email_verified_at timestamp [null]
+  password varchar
+  role user_role [default: 'staff']
+  bidang varchar(100) [null, note: 'Masih disimpan sebagai teks dan belum menjadi foreign key ke tabel bidang.']
+  remember_token varchar [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+}
+
+Table bidang {
+  id bigint [pk, increment]
+  nama_bidang varchar(100) [unique]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+}
+
+Table ruangan {
+  id bigint [pk, increment]
+  kode_ruangan varchar(20) [unique]
+  nama_ruangan varchar(100)
+  lantai varchar(10) [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+  deleted_at timestamp [null]
+}
+
+Table bidang_ruangan {
+  id bigint [pk, increment]
+  bidang_id bigint
+  ruangan_id bigint
+  created_at timestamp [null]
+  updated_at timestamp [null]
+
+  indexes {
+    (bidang_id, ruangan_id) [unique]
+  }
+}
+
+Table barang {
+  id bigint [pk, increment]
+  kode_barang varchar(50) [unique]
+  nama_barang varchar(150)
+  jenis_kib jenis_kib [null, note: 'Terisi B setelah barang memiliki detail KIB B']
+  bidang_id bigint
+  ruangan_id bigint
+  tahun_perolehan year [null]
+  tanggal_perolehan date [null, note: 'Dipakai sebagai dasar periode laporan otomatis.']
+  kondisi kondisi_barang [default: 'baik']
+  status status_barang [default: 'aktif']
+  harga_perolehan decimal(15,2) [default: 0]
+  qr_code varchar [null]
+  foto varchar [null]
+  created_by bigint [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+  deleted_at timestamp [null]
+}
+
+Table kib_b_peralatan_mesin {
+  id bigint [pk, increment]
+  barang_id bigint [note: 'Belum unique. Database masih memungkinkan lebih dari satu detail untuk satu barang.']
+  merk_type varchar(100) [null]
+  ukuran varchar(100) [null]
+  bahan varchar(100) [null]
+  no_seri varchar(100) [null]
+  spesifikasi text [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+}
+
+Table mutasi_barang {
+  id bigint [pk, increment]
+  barang_id bigint
+  ruangan_asal_id bigint
+  ruangan_tujuan_id bigint
+  tanggal_mutasi date
+  alasan text [null]
+  kondisi_sebelum kondisi_barang
+  kondisi_sesudah kondisi_barang
+  dilakukan_oleh bigint [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+
+  Note: 'Batch mutasi disimpan sebagai banyak baris, satu baris untuk setiap barang.'
+}
+
+Table request_kerusakan {
+  id bigint [pk, increment]
+  barang_id bigint
+  tanggal_laporan date
+  tingkat_kerusakan tingkat_kerusakan [default: 'ringan']
+  deskripsi_kerusakan text
+  status status_request_kerusakan [default: 'diajukan']
+  dilaporkan_oleh bigint [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+}
+
+Table pemeliharaan {
+  id bigint [pk, increment]
+  barang_id bigint
+  request_kerusakan_id bigint [null, note: 'Belum unique. Secara fisik satu request masih dapat direferensikan banyak pemeliharaan.']
+  tanggal date
+  jenis_pemeliharaan varchar(100)
+  deskripsi text [null]
+  biaya decimal(15,2) [default: 0]
+  kondisi_sesudah kondisi_barang
+  dilakukan_oleh bigint [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+
+  Note: 'Batch pemeliharaan disimpan sebagai banyak baris, satu baris untuk setiap barang.'
+}
+
+Table laporan_inventaris {
+  id bigint [pk, increment]
+  jenis_laporan varchar(100)
+  periode periode_laporan
+  bulan tinyint [null]
+  tahun year
+  file_laporan varchar [null]
+  dibuat_oleh bigint [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+}
+
+Table import_log {
+  id bigint [pk, increment]
+  nama_file varchar
+  tipe_import varchar [null]
+  jenis_kib jenis_kib [default: 'B']
+  total_baris int [default: 0]
+  berhasil int [default: 0]
+  gagal int [default: 0]
+  duplikat int [default: 0]
+  status status_import [default: 'sukses']
+  catatan_error text [null]
+  detail_error longtext [null]
+  path_file varchar [null]
+  ip_address varchar [null]
+  waktu_selesai timestamp [null]
+  diupload_oleh bigint [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+}
+
+Table notifications {
+  id uuid [pk]
+  type varchar
+  notifiable_type varchar
+  notifiable_id bigint
+  data json
+  read_at timestamp [null]
+  created_at timestamp [null]
+  updated_at timestamp [null]
+
+  indexes {
+    (notifiable_type, notifiable_id)
+  }
+
+  Note: 'Relasi notifiable bersifat polymorphic Laravel. notifiable_id tidak memiliki foreign key langsung ke users.'
+}
+
+Ref: barang.ruangan_id > ruangan.id
+Ref: barang.bidang_id > bidang.id
+Ref: barang.created_by > users.id
+
+Ref: bidang_ruangan.bidang_id > bidang.id
+Ref: bidang_ruangan.ruangan_id > ruangan.id
+
+// Secara fisik merupakan many-to-one karena barang_id belum unique.
+// Model Barang menggunakan hasOne untuk mengakses detail KIB B.
+Ref: kib_b_peralatan_mesin.barang_id > barang.id
+
+Ref: mutasi_barang.barang_id > barang.id
+Ref: mutasi_barang.ruangan_asal_id > ruangan.id
+Ref: mutasi_barang.ruangan_tujuan_id > ruangan.id
+Ref: mutasi_barang.dilakukan_oleh > users.id
+
+Ref: request_kerusakan.barang_id > barang.id
+Ref: request_kerusakan.dilaporkan_oleh > users.id
+
+Ref: pemeliharaan.barang_id > barang.id
+// Secara fisik merupakan many-to-one karena request_kerusakan_id belum unique.
+// Model RequestKerusakan menggunakan hasOne untuk mengakses pemeliharaan.
+Ref: pemeliharaan.request_kerusakan_id > request_kerusakan.id
+Ref: pemeliharaan.dilakukan_oleh > users.id
+
+Ref: laporan_inventaris.dibuat_oleh > users.id
+Ref: import_log.diupload_oleh > users.id
+
+// Tidak dibuat Ref notifications.notifiable_id ke users karena relasinya polymorphic
+// dan tidak memiliki constraint foreign key langsung pada database.

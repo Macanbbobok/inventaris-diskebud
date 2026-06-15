@@ -1,0 +1,83 @@
+<mxfile host="app.diagrams.net" agent="Codex">
+  <diagram id="activity-login" name="Activity Diagram Login">
+    <mxGraphModel dx="1665" dy="1033" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user-lane" parent="1" style="swimlane;html=1;horizontal=1;startSize=50;rounded=0;collapsible=0;fontSize=17;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="Login User" vertex="1">
+          <mxGeometry height="630" width="480" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="show-error" parent="user-lane" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menampilkan pesan login gagal" vertex="1">
+          <mxGeometry height="65" width="250" x="80" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="system-lane" parent="1" style="swimlane;html=1;horizontal=1;startSize=50;rounded=0;collapsible=0;fontSize=17;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="Sistem" vertex="1">
+          <mxGeometry height="630" width="480" x="520" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="265" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="input-login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Masukkan email dan password" vertex="1">
+          <mxGeometry height="75" width="210" x="175" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="validate-account" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Validasi akun" vertex="1">
+          <mxGeometry height="65" width="190" x="665" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="valid-decision" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;" value="Validasi?" vertex="1">
+          <mxGeometry height="80" width="100" x="710" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="show-dashboard" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=15;" value="Menampilkan dashboard" vertex="1">
+          <mxGeometry height="65" width="210" x="655" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="end-outer" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="740" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="end-inner" parent="1" style="ellipse;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="748" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-start-input" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="input-login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-input-validation" edge="1" parent="1" source="input-login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="validate-account">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-validation-decision" edge="1" parent="1" source="validate-account" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="valid-decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-valid" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontSize=13;fontStyle=1;" target="show-dashboard" value="Valid">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="360" />
+              <mxPoint x="860" y="420" />
+              <mxPoint x="760" y="420" />
+            </Array>
+            <mxPoint x="810" y="360" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-error-back" edge="1" parent="1" source="show-error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="input-login">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="463" />
+              <mxPoint x="100" y="228" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-dashboard-end" edge="1" parent="1" source="show-dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;" target="end-outer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-invalid" edge="1" parent="1" source="valid-decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4B5563;strokeWidth=1.5;fontSize=13;fontStyle=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="show-error" value="Tidak Valid">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="411" />
+              <mxPoint x="570" y="411" />
+              <mxPoint x="570" y="480" />
+              <mxPoint x="405" y="480" />
+              <mxPoint x="405" y="463" />
+            </Array>
+            <mxPoint x="700" y="350" as="sourcePoint" />
+            <mxPoint x="430" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
